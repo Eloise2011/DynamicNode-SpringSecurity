@@ -1,0 +1,9 @@
+#\u914D\u7F6E\u9879\u76EE\u7684\u540D\u79F0\uFF0C\u73B0\u5728\u6211\u4EEC\u7528\u4E0D\u5230\u8BE5\u914D\u7F6E\uFF0C\u8FD9\u4E2A\u914D\u7F6E\u5728\u540E\u7EED\u5FAE\u670D\u52A1\u4E2D\u4F1A\u4F7F\u7528
+spring:
+  application:
+    name: security-01-base
+
+  security:
+    user:
+      name: Joshua
+      password: .H.Brooks
