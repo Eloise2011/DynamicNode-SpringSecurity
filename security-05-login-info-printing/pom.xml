@@ -6,12 +6,14 @@
         <groupId>com.example</groupId>
         <artifactId>DynamicNode-SpringSecurity</artifactId>
         <version>0.0.1-SNAPSHOT</version>
+        <!-- lookup parent from repository -->
+<!--        <relativePath/> -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>security-04-captcha-login</artifactId>
+    <artifactId>security-05-login-info-printing</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>security-04-captcha-login</name>
-    <description>security-04-captcha-login</description>
+    <name>You can name it as YOU WISH !</name>
+    <description>Printing the user info and return when successfully logged in</description>
     <url/>
     <licenses>
         <license/>
@@ -25,6 +27,7 @@
         <tag/>
         <url/>
     </scm>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -86,6 +89,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -97,8 +106,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>21</source>
-                    <target>21</target>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                     <compilerArgs>--enable-preview</compilerArgs>
                 </configuration>
             </plugin>
