@@ -21,6 +21,9 @@
         <module>security-03-db-customized-login-page</module>
         <module>security-04-captcha-login</module>
         <module>security-05-login-info-printing</module>
+        <module>security-06-login-role-permission</module>
+        <module>security-07-login-resource-permission</module>
+        <module>security-09-login-api-jwt</module>
     </modules>
 
     <url/>

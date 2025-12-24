@@ -7,3 +7,5 @@ spring:
     user:
       name: Joshua
       password: .H.Brooks
+server:
+  port: 8081

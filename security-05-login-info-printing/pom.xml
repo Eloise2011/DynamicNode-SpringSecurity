@@ -12,7 +12,7 @@
     <groupId>com.example</groupId>
     <artifactId>security-05-login-info-printing</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>You can name it as YOU WISH !</name>
+    <name>security-05-login-info-printing ～ You can name it as YOU WISH !</name>
     <description>Printing the user info and return when successfully logged in</description>
     <url/>
     <licenses>
