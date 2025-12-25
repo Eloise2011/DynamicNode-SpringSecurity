@@ -113,11 +113,11 @@ public class TUser implements UserDetails, Serializable { // 添加了实现User
 //            authorities.add(new SimpleGrantedAuthority("ROLE_" + tRole.getRole()));
 
 //        }
-        for (TPermission tPermission : this.permissions) {
-            //放入权限（权限标识符，权限code，权限代码）
-            authorities.add(new SimpleGrantedAuthority(tPermission.getCode()));
-        }
-        return authorities;
+//        for (TPermission tPermission : this.permissions) {
+//            //放入权限（权限标识符，权限code，权限代码）
+//            authorities.add(new SimpleGrantedAuthority(tPermission.getCode()));
+//        }
+        return List.of();
     }
 
     @Override

@@ -40,11 +40,6 @@ public class UserServiceImpl implements UserService {
         if (tUser == null) {
             throw new UsernameNotFoundException("登录账号不存在");
         }
-        System.out.println(tUser.toString() + "Logged in successfully");
-        List<TRole> roles = tRoleMapper.selectByUserId(tUser.getId());
-        List<TPermission> permissions = tPermissionMapper.selectByUserId(tUser.getId());
-        //tUser.setRoles(roles);
-        tUser.setPermissions(permissions);
         return tUser;
 //        return User.builder().username(tUser.getLoginAct()).password(tUser.getLoginPwd()).accountExpired(true)
 //                .authorities(AuthorityUtils.NO_AUTHORITIES).accountExpired(false).build();
