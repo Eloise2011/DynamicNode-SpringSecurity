@@ -3,6 +3,7 @@ package com.example.security08loginapi.config;
 import com.example.security08loginapi.filter.CaptchaFilter;
 import com.example.security08loginapi.handler.MyAuthenticationFailureHandler;
 import com.example.security08loginapi.handler.MyAuthenticationSuccessHandler;
+import com.example.security08loginapi.handler.MyLogoutHandler;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -11,6 +12,7 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.FormLoginConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -33,6 +35,8 @@ public class SecurityConfig {
     MyAuthenticationSuccessHandler myAuthenticationSuccessHandler;
     @Resource
     private MyAuthenticationFailureHandler myAuthenticationFailureHandler;
+//    @Resource
+//    private MyLogoutHandler myLogoutHandler;
 
 //    @Resource
 //    private CaptchaFilter captchaFilter;
@@ -47,7 +51,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity, CorsConfigurationSource configurationSource) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity, CorsConfigurationSource configurationSource, MyLogoutHandler myLogoutHandler) throws Exception {
         return httpSecurity
 
                 //配置我们自己的登录页
@@ -61,6 +65,13 @@ public class SecurityConfig {
                         // 前后端分离时， 登陆时直接请求在访问http://localhost:8080/user/login， /user/Loqin 地址之前，对于后端应用来说，没有上一个地址（原地），那默认是跳转到项目的根路径斜杆 /
                     }
                 })
+                .logout((logout) -> {
+                            logout.logoutUrl("/user/logout") //退出请求提交到哪个地址
+                                    .logoutSuccessHandler(myLogoutHandler); //退出成功后执行该handler
+                            //退出失败呢？Spring Security框架没有退出失败的处理
+                        }
+
+                       )
 
                 //把所有接口都会进行登录状态检查的默认行为，再加回来
                 .authorizeHttpRequests( (authorizeHttpRequests) -> {
@@ -83,6 +94,12 @@ public class SecurityConfig {
                 })
                 .cors((cors)->{
                     cors.configurationSource(configurationSource);
+                })
+                .sessionManagement((sessionManagement) -> {
+                    //session创建策略 (无session状态)
+                    // 前后端分离的情况下，后端spring security生成的session无法返回给前端使用， 所以直接不生成
+                    // 接下来session管理问题会借助JWT解决
+                    sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
                 })
                 .build();
     }
